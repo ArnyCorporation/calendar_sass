@@ -2,6 +2,38 @@
 @import "fonts";
 @import "typography";
 
-body {
-  background: $c-gray;
+.calendar {
+  @include auto-numbers(div, " ");
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  font-size: 30px;
+  grid-gap: 1px 3px;
+
+  &::before {
+    content: "";
+    height: 100px;
+    width: 100px;
+  }
+
+  div {
+    height: 100px;
+    width: 100px;
+    background: $c-gray;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+
+    &:nth-last-child(1) {
+      display: none;
+    }
+
+    &:hover {
+      background: pink;
+      top: -20px;
+    }
+  }
 }

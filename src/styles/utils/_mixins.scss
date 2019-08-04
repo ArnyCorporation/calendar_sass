@@ -1,6 +1,33 @@
 @mixin hover($_property, $_toValue) {
   transition: #{$_property} 0.3s;
+
   &:hover {
     #{$_property}: $_toValue;
+  }
+}
+@mixin auto-numbers($numbered-element,
+$sep, $counter: item, $nested-parent: false) {
+  $sel: ();
+  @if $nested-parent {
+    $sel: append($sel, unquote($nested-parent));
+
+    #{$nested-parent} {
+      list-style: none;
+      margin-left: 0;
+    }
+  }
+  $sel: append($sel, unquote("&"), comma);
+
+  #{$sel} {
+    counter-reset: #{$counter};
+
+    > #{$numbered-element} {
+      &:before {
+        counter-increment: #{$counter};
+        content: if($nested-parent,
+        counters(#{$counter},
+        "#{$sep} ") "#{$sep} ", counter(#{$counter}) "#{$sep} ");
+      }
+    }
   }
 }
