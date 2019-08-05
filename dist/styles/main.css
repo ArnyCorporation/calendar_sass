@@ -8,7 +8,42 @@ h1 {
   font-weight: normal;
   font-style: normal; }
 
-body {
-  background: #eee; }
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  font-size: 30px;
+  grid-gap: 1px 3px; }
+  .calendar {
+    counter-reset: item; }
+    .calendar > div:before {
+      counter-increment: item;
+      content: counter(item) "  "; }
+  .calendar::before {
+    content: "";
+    height: 100px;
+    width: 100px; }
+  .calendar div {
+    height: 100px;
+    width: 100px;
+    background: #eee;
+    border: 1px solid black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: relative;
+    top: 0;
+    -webkit-transition: top ease 0.5s;
+    transition: top ease 0.5s; }
+    .calendar div:nth-last-child(1) {
+      display: none; }
+    .calendar div:hover {
+      background: pink;
+      top: -20px; }
 
 /*# sourceMappingURL=main.css.map */
